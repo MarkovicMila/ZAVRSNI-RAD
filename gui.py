@@ -4,7 +4,9 @@ from klasa import *
 
 root=Tk()
 root.title("Turisticka agencija")
-
+root.geometry('300x300')
+icon=PhotoImage(file='autobus.png')
+root.iconphoto(True,icon)
 def export():
     t=Toplevel(root)
 
@@ -27,13 +29,16 @@ def izbor_broja_lezajeva(destinacija):
 
 def izaberi_agenciju():
     t=Toplevel(root)
-    
+    BalkanFun=PhotoImage(file='BalkanFun.jpg')
+    PuzzleGroup=PhotoImage(file='PuzzleGroup.png')
+    Go2Travelling=PhotoImage(file='Go2Travelling.webp')
+    RapsodyTravel=PhotoImage(file='RapsodyTravel.jpg')
     var1 = StringVar(t) 
     var1.set("Balkan Fun") 
-    r1=Radiobutton(t, text="Balkan Fun", variable=var1, value="Balkan Fun")
-    r2=Radiobutton(t, text="Puzzle Group", variable=var1, value="Puzzle Group")
-    r3=Radiobutton(t, text="Go2 Travelling", variable=var1, value="Go2 Travelling")
-    r4=Radiobutton(t, text="Rapsody Travel", variable=var1, value="Rapsody Travel")
+    r1=Radiobutton(t, text="Balkan Fun", variable=var1, value="Balkan Fun",image_=BalkanFun,compound='left')
+    r2=Radiobutton(t, text="Puzzle Group", variable=var1, value="Puzzle Group",image_=PuzzleGroup,compound='left')
+    r3=Radiobutton(t, text="Go2 Travelling", variable=var1, value="Go2 Travelling",image_=Go2Travelling,compound='left')
+    r4=Radiobutton(t, text="Rapsody Travel", variable=var1, value="Rapsody Travel",image_=RapsodyTravel,compound='left')
     
 
     r1.grid(row=0,column=0)
@@ -53,10 +58,10 @@ for i in range(len(destinacija)):
 
 listbox.grid(row=0,column=0)
 
-listbox.config(height=listbox.size())
+listbox.config(height=listbox.size(),width=20)
 
 b_destinacije=Button(root,text="Izbor destinacije",command=lambda:izbor_broja_lezajeva(listbox.get(listbox.curselection())))
-b_destinacije.grid(row=listbox.size(),column=0)
+b_destinacije.grid(row=10,column=0)
 
 
 b_agencija=Button(root,text="Pogledaj podatke za agenciju",height=3,command=lambda:izaberi_agenciju())

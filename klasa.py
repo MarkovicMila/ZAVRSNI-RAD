@@ -1,7 +1,7 @@
 import psycopg2 as pg
 import openpyxl as op
 import pandas as pd
-import matplotlib as plt
+import matplotlib.pyplot as plt
 
 class Aranzmani:
     def __init__(self):
@@ -31,7 +31,7 @@ class Aranzmani:
     
     def export(self,lokacija):
         if lokacija=='csv':
-            self.aranzmani_df.to_csv('Aramnzmani.csv',index=False)
+            self.aranzmani_df.to_csv('Aranzmani.csv',index=False)
             return 'File succesfully exported'
         else:
             self.aranzmani_df.to_excel('Aranzmani.xlsx',index=False)
@@ -41,12 +41,46 @@ class Aranzmani:
         self.aranzmani_df=pd.read_sql_query('''
         SELECT AR.ID_ARANZMANA, AR.DESTINACIJA, AR.BROJ_KREVETA, AR.CENA
         FROM AGENCIJE AG, ARANZMANI AR
-        WHERE AG.PIB_AGENCIJE=AR.PIB_AGENCIJE AND AG.NAZIV_AGENCIJE='{}' '''.format(agencija),self.con)
+        WHERE AG.PIB_AGENCIJE=AR.PIB_AGENCIJE AND AG.NAZIV_AGENCIJE='{}' 
+        ORDER BY AR.CENA ASC'''.format(agencija),self.con)
         self.aranzmani_df.to_excel('''Aranzmani za agenciju {}.xlsx'''.format(agencija),index=False)
-    
+
+        pom=pd.read_sql_query('''
+        SELECT AR.ID_ARANZMANA, AR.DESTINACIJA, AR.CENA
+        FROM AGENCIJE AG, ARANZMANI AR
+        WHERE AG.PIB_AGENCIJE=AR.PIB_AGENCIJE AND AG.NAZIV_AGENCIJE='{}' AND AR.BROJ_KREVETA=2
+        ORDER BY AR.CENA ASC'''.format(agencija),self.con)
+        cena=pom.iloc[:,2]
+        destinacija=pom.iloc[:,1]
+        plt.subplot(2,1,1)
+        plt.title('Cene za dvokrevetne sobe')
+        plt.bar(destinacija,cena)
+
+        pom=pd.read_sql_query('''
+        SELECT AR.ID_ARANZMANA, AR.DESTINACIJA, AR.CENA
+        FROM AGENCIJE AG, ARANZMANI AR
+        WHERE AG.PIB_AGENCIJE=AR.PIB_AGENCIJE AND AG.NAZIV_AGENCIJE='{}' AND AR.BROJ_KREVETA=3
+        ORDER BY AR.CENA ASC'''.format(agencija),self.con)
+        cena=pom.iloc[:,2]
+        destinacija=pom.iloc[:,1]
+        plt.subplot(2,1,2)
+        plt.title('Cene za trokrevetne sobe')
+        plt.bar(destinacija,cena)
+
+        plt.show()    
         
     def destinacija_broj_lezajeva(self,destinacija,broj_lezajeva):
-        pass
+        self.aranzmani_df=pd.read_sql_query('''
+        SELECT AR.ID_ARANZMANA, AG.NAZIV_AGENCIJE, AG.PIB_AGENCIJE, AG.ADRESA_AGENCIJE, AG.BROJ_LICENCE, AR.CENA
+        FROM AGENCIJE AG, ARANZMANI AR
+        WHERE AG.PIB_AGENCIJE=AR.PIB_AGENCIJE AND AR.DESTINACIJA='{}' AND AR.BROJ_KREVETA={}
+        ORDER BY AR.CENA ASC'''.format(destinacija,int(broj_lezajeva)),self.con)
+        self.aranzmani_df.to_excel('''Aranzmani za destinaciju {} i {} kreveta.xlsx'''.format(destinacija,broj_lezajeva),index=False)
+
+        cena=self.aranzmani_df.iloc[:,5]
+        agencija=self.aranzmani_df.iloc[:,1]
+        plt.bar(agencija,cena,color='red')
+        plt.show()
 
 
 a=Aranzmani()
