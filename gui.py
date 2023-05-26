@@ -26,44 +26,62 @@ def export():
 def izbor_broja_lezajeva_dodatnih_opcija(destinacija):
     t=Toplevel(root)
 
+    br_kreveta=Label(t,text='Izaberite broj lezajeva:')
+    br_kreveta.grid(row=0,column=0,columnspan=40)
+    br_kreveta.config(anchor='w')
+
     var1 = StringVar(t) 
     var1.set("dvokrevetna") 
     r1=Radiobutton(t, text="dvokrevetna", variable=var1, value='dvokrevetna')
     r2=Radiobutton(t, text="trokrevetna", variable=var1, value='trokrevetna')
 
-    r1.grid(row=0,column=0)
-    r1.config(anchor=W)
-    r2.grid(row=1,column=0)
-    r2.config(anchor=W)
+    r1.grid(row=1,column=0,columnspan=20)
+    r1.config(anchor='w')
+    r2.grid(row=1,column=21,columnspan=20)
+    r2.config(anchor='w')
+
+    tip_polaska=Label(t,text='Izaberite tip polaska:')
+    tip_polaska.grid(row=2,column=0,columnspan=40)
+    tip_polaska.config(anchor='w')
 
     var2 = StringVar(t) 
     var2.set("Organizovani polazak") 
     r3=Radiobutton(t, text="Organizovani polazak", variable=var2, value='Organizovani polazak')
     r4=Radiobutton(t, text="Individualni polazak", variable=var2, value='Individualni polazak')
 
-    r3.grid(row=2,column=0)
-    r3.config(anchor=W)
-    r4.grid(row=3,column=0)
-    r4.config(anchor=W)
+    r3.grid(row=3,column=0,columnspan=20)
+    r3.config(anchor='w')
+    r4.grid(row=3,column=21,columnspan=20)
+    r4.config(anchor='w')
 
+    dodatne_opcije=Label(t,text='Izaberite dodatne opcije:')
+    dodatne_opcije.grid(row=4,column=0,columnspan=40)
+    dodatne_opcije.config(anchor='w')
 
     x=IntVar()
     y=IntVar() 
     z=IntVar()
+    q=IntVar()
+
     fakultativni_izleti=Checkbutton(t,text='Fakultativni izleti',variable=x)
-    fakultativni_izleti.grid(row=0,column=1)
-    fakultativni_izleti.config(anchor=W)
+    fakultativni_izleti.grid(row=5,column=0,columnspan=20)
+    fakultativni_izleti.config(anchor='w')
 
     Turisticki_vodic=Checkbutton(t,text='Turisticki vodic',variable=y)
-    Turisticki_vodic.grid(row=1,column=1)
-    Turisticki_vodic.config(anchor=W)
+    Turisticki_vodic.grid(row=5,column=21,columnspan=20)
+    Turisticki_vodic.config(anchor='w')
 
     Putno_osiguranje=Checkbutton(t,text='Putno osiguranje',variable=z)
-    Putno_osiguranje.grid(row=2,column=1)
-    Putno_osiguranje.config(anchor=W)
+    Putno_osiguranje.grid(row=6,column=0,columnspan=20)
+    Putno_osiguranje.config(anchor='w')
 
-    b_opcije=Button(t,text="Izbor",command=lambda:[a.opcije(destinacija,var1.get(),var2.get(),x,y,z),quit('Formiran je excel file za izabranu lokaciju! Ok za izlazak')])
-    b_opcije.grid(row=4,column=1)
+    Party_narukvica=Checkbutton(t,text='Party narukvica',variable=q)
+    Party_narukvica.grid(row=6,column=21,columnspan=20)
+    Party_narukvica.config(anchor='w')
+    
+    b_opcije=Button(t,text="Izbor",command=lambda:[a.opcije(destinacija,var1.get(),var2.get(),x,y,z,q),quit('Formiran je excel file za izabranu lokaciju! Ok za izlazak')])
+    b_opcije.grid(row=7,column=0,columnspan=40)
+    
 
 
 

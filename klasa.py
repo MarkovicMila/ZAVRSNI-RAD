@@ -72,7 +72,7 @@ class Aranzmani:
 
         plt.show()    
         
-    def opcije(self,destinacija,broj_lezajeva,polazak,fakultativni_izleti,Turisticki_vodic,Putno_osiguranje):
+    def opcije(self,destinacija,broj_lezajeva,polazak,fakultativni_izleti,Turisticki_vodic,Putno_osiguranje,Party_narukvica):
         if broj_lezajeva=='dvokrevetna':
             broj_lezajeva=2
         elif broj_lezajeva=='trokrevetna':
@@ -94,6 +94,9 @@ class Aranzmani:
             cena+=10
         if Putno_osiguranje.get()==1:
             cena+=15
+        if Party_narukvica.get()==1:
+            cena+=20
+            
 
         self.aranzmani_df.iloc[:,5]=cena
         self.aranzmani_df.to_excel('''Aranzmani za destinaciju {} i {} kreveta.xlsx'''.format(destinacija,broj_lezajeva),index=False)
