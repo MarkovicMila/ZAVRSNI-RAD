@@ -4,9 +4,152 @@ from klasa import *
 
 root=Tk()
 root.title("Turisticka agencija")
-root.geometry('251x450')
 icon=PhotoImage(file='autobus.png')
 root.iconphoto(True,icon)
+
+def agencija():
+
+    sifra=pyauto.password('Unesite sifru',default='',mask='*')
+    if sifra=='Balkan_admin' or sifra=='Puzzle_admin' or sifra=='Go2_admin' or sifra=='Rapsody_admin':
+        pyauto.alert('''            Uspesno ste se ulogovali! 
+        Dobrodosni na stranicu za agencije.''')
+
+        t=Toplevel(root)
+
+        b_dodaj=Button(t,text='''Dodajte novu ponudu 
+            za vasu agenciju''',command=lambda:dodaj_ponudu(sifra))
+        b_dodaj.pack()
+        b_dodaj.config(width=30)
+
+        b_pogledaj=Button(t,text='''Pogledajte ponude 
+        za drugu agenciju''',command=lambda:pogledaj_ponudu(sifra))
+        b_pogledaj.pack()
+        b_pogledaj.config(width=30)
+    
+    else:
+        quit('Uneli ste losu sifru. Ok za izlazak')
+    
+def dodaj_ponudu(sifra):
+    t=Toplevel(root)
+
+    destinacija=Label(t,text='Destinacija:').pack()
+    destinacija=Entry(t)
+    destinacija.pack()
+
+    broj_kreveta=Label(t,text='Broj kreveta:').pack()
+    broj_kreveta=Entry(t)
+    broj_kreveta.pack()
+
+    cena=Label(t,text='Cena:').pack()
+    cena=Entry(t)
+    cena.pack()
+
+    if sifra=='Balkan_admin':
+        dodaj=Button(t,text="Dodaj",command=lambda:[a.nov_aranzman(destinacija.get(),106900792,broj_kreveta.get(),cena.get()),quit('Dodali ste novu ponudu.')])
+        dodaj.pack()
+    elif sifra=='Puzzle_admin':
+        dodaj=Button(t,text="Dodaj",command=lambda:[a.nov_aranzman(destinacija.get(),107156256,broj_kreveta.get(),cena.get()),quit('Dodali ste novu ponudu.')])
+        dodaj.pack()
+    elif sifra=='Go2_admin':
+        dodaj=Button(t,text="Dodaj",command=lambda:[a.nov_aranzman(destinacija.get(),106848247,broj_kreveta.get(),cena.get()),quit('Dodali ste novu ponudu.')])
+        dodaj.pack()
+    elif sifra=='Rapsody_admin':
+        dodaj=Button(t,text="Dodaj",command=lambda:[a.nov_aranzman(destinacija.get(),103721228,broj_kreveta.get(),cena.get()),quit('Dodali ste novu ponudu.')])
+        dodaj.pack()
+    else:
+        quit('Uneli ste losu sifru. Ok za izlazak')
+
+def pogledaj_ponudu(sifra):
+
+    if sifra=='Balkan_admin':
+        t=Toplevel(root)
+
+        var1 = StringVar(t) 
+        var1.set("Puzzle Group") 
+        r1=Radiobutton(t, text="Puzzle Group", variable=var1, value="Puzzle Group")
+        r2=Radiobutton(t, text="Go2 Travelling", variable=var1, value="Go2 Travelling")
+        r3=Radiobutton(t, text="Rapsody Travel", variable=var1, value="Rapsody Travel")
+        
+        r1.pack()
+        r2.pack()
+        r3.pack()
+        
+        b_ponude=Button(t,text="Izaberi agenciju",command=lambda:[a.export_agencija(var1.get()),quit('Formiran je excel file za izabranu agenciju! Ok za izlazak')])
+        b_ponude.pack()
+        
+    elif sifra=='Puzzle_admin':
+        t=Toplevel(root)
+
+        var1 = StringVar(t) 
+        var1.set("Balkan Fun") 
+        r1=Radiobutton(t, text="Balkan Fun", variable=var1, value="Balkan Fun")
+        r2=Radiobutton(t, text="Go2 Travelling", variable=var1, value="Go2 Travelling")
+        r3=Radiobutton(t, text="Rapsody Travel", variable=var1, value="Rapsody Travel")
+        
+        r1.pack()
+        r2.pack()
+        r3.pack()
+        
+        b_ponude=Button(t,text="Izaberi agenciju",command=lambda:[a.export_agencija(var1.get()),quit('Formiran je excel file za izabranu agenciju! Ok za izlazak')])
+        b_ponude.pack()
+    elif sifra=='Go2_admin':
+        t=Toplevel(root)
+
+        var1 = StringVar(t) 
+        var1.set("Go2 Travelling") 
+        r1=Radiobutton(t, text="Balkan Fun", variable=var1, value="Balkan Fun")
+        r2=Radiobutton(t, text="Puzzle Group", variable=var1, value="Puzzle Group")
+        r3=Radiobutton(t, text="Rapsody Travel", variable=var1, value="Rapsody Travel")
+        
+        r1.pack()
+        r2.pack()
+        r3.pack()
+        
+        b_ponude=Button(t,text="Izaberi agenciju",command=lambda:[a.export_agencija(var1.get()),quit('Formiran je excel file za izabranu agenciju! Ok za izlazak')])
+        b_ponude.pack()
+    elif sifra=='Rapsody_admin':
+        t=Toplevel(root)
+
+        var1 = StringVar(t) 
+        var1.set("Rapsody Travel") 
+        r1=Radiobutton(t, text="Balkan Fun", variable=var1, value="Balkan Fun")
+        r2=Radiobutton(t, text="Puzzle Group", variable=var1, value="Puzzle Group")
+        r3=Radiobutton(t, text="Go2 Travelling", variable=var1, value="Go2 Travelling")
+        
+        r1.pack()
+        r2.pack()
+        r3.pack()
+        
+        b_ponude=Button(t,text="Izaberi agenciju",command=lambda:[a.export_agencija(var1.get()),quit('Formiran je excel file za izabranu agenciju! Ok za izlazak')])
+        b_ponude.pack()
+    else:
+        quit('Uneli ste losu sifru. Ok za izlazak')
+    
+def kupac():
+    t=Toplevel(root)
+    t.geometry('251x548')
+
+
+    b_export=Button(t,text="Pogledajte sve aranzmane",command=lambda:export())
+    b_export.grid(row=2)
+    b_export.config(width=30,height=3)
+    b_agencija=Button(t,text="Pogledaj aranzmane za agenciju",command=lambda:izaberi_agenciju())
+    b_agencija.grid(row=3)
+    b_agencija.config(width=30,height=3)
+
+    destinacija=a.listbox()
+    listbox=Listbox(t)
+    for i in range(len(destinacija)):
+        listbox.insert(i,destinacija[i])
+
+    listbox.grid(row=0)
+
+    listbox.config(height=15,width=30)
+
+    b_destinacije=Button(t,text="Izbor destinacije",command=lambda:izbor_broja_lezajeva_dodatnih_opcija(listbox.get(listbox.curselection())))
+    b_destinacije.grid(row=1)
+    b_destinacije.config(width=30,height=3)
+
 def quit(text):
     pyauto.alert(text)
     return root.quit()
@@ -84,8 +227,6 @@ def izbor_broja_lezajeva_dodatnih_opcija(destinacija):
     
 
 
-
-
 def izaberi_agenciju():
     t=Toplevel(root)
 
@@ -106,25 +247,15 @@ def izaberi_agenciju():
     b_agencija=Button(t,text="Izaberi agenciju",command=lambda:[a.export_agencija(var1.get()),quit('Formiran je excel file za izabranu agenciju! Ok za izlazak')])
     b_agencija.pack()
 
-b_export=Button(root,text="Pogledajte sve aranzmane",command=lambda:export())
-b_export.grid(row=2)
-b_export.config(width=30,height=3)
-b_agencija=Button(root,text="Pogledaj aranzmane za agenciju",command=lambda:izaberi_agenciju())
-b_agencija.grid(row=3)
+label1=Label(root,text='''Izaberite da li pristupate aplikaciji
+    kao agencija ili kao kupac:''')
+label1.grid(row=1)
+label1.config(width=30,height=3)
+b_agencija=Button(root,text="Agencija",command=lambda:agencija())
+b_agencija.grid(row=2)
 b_agencija.config(width=30,height=3)
-
-destinacija=a.listbox()
-listbox=Listbox(root)
-for i in range(len(destinacija)):
-    listbox.insert(i,destinacija[i])
-
-listbox.grid(row=0)
-
-listbox.config(height=listbox.size(),width=30)
-
-b_destinacije=Button(root,text="Izbor destinacije",command=lambda:izbor_broja_lezajeva_dodatnih_opcija(listbox.get(listbox.curselection())))
-b_destinacije.grid(row=1)
-b_destinacije.config(width=30,height=3)
-
+b_kupac=Button(root,text="Kupac",command=lambda:kupac())
+b_kupac.grid(row=3)
+b_kupac.config(width=30,height=3)
 
 mainloop()
