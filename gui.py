@@ -247,8 +247,8 @@ def izaberi_agenciju():
     b_agencija=Button(t,text="Izaberi agenciju",command=lambda:[a.export_agencija(var1.get()),quit('Formiran je excel file za izabranu agenciju! Ok za izlazak')])
     b_agencija.pack()
 
-label1=Label(root,text='''Izaberite da li pristupate aplikaciji
-    kao agencija ili kao kupac:''')
+label1=Label(root,text='''Da li pristupate aplikaciji
+kao agencija ili kao kupac:''')
 label1.grid(row=1)
 label1.config(width=30,height=3)
 b_agencija=Button(root,text="Agencija",command=lambda:agencija())
