@@ -31,7 +31,7 @@ class Aranzmani:
         self.aranzmani_df=pd.read_sql('SELECT * FROM ARANZMANI',con=self.con)
         self.aranzmani_df.loc[len(self.aranzmani_df)]=[self.aranzmani_df.iloc[-1,0]+1,destinacija,pib_agencije,broj_kreveta,cena]
         cursor=self.con.cursor()
-        s="INSERT INTO ARANZMANI(DESTINACIJA,PIB_AGENCIJE,BROJ_KREVETA,CENA) VALUES ('{}',{},{},{});".format(destinacija,pib_agencije,broj_kreveta,cena)
+        s="INSERT INTO ARANZMANI(DESTINACIJA,PIB_AGENCIJE,BROJ_KREVETA,CENA) VALUES ('{}',{},{},{});".format(destinacija,pib_agencije,broj_kreveta,cena)            
         cursor.execute(s)
         self.con.commit()
         cursor.close()

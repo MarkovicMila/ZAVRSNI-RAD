@@ -44,6 +44,7 @@ def dodaj_ponudu(sifra):
     cena=Entry(t)
     cena.pack()
 
+  
     if sifra=='Balkan_admin':
         dodaj=Button(t,text="Dodaj",command=lambda:[a.nov_aranzman(destinacija.get(),106900792,broj_kreveta.get(),cena.get()),quit('Dodali ste novu ponudu.')])
         dodaj.pack()
@@ -58,6 +59,7 @@ def dodaj_ponudu(sifra):
         dodaj.pack()
     else:
         quit('Uneli ste losu sifru. Ok za izlazak')
+
 
 def pogledaj_ponudu(sifra):
 
