@@ -1,0 +1,4 @@
+CMD udjem u virtuelno_okruzenje>Scripts>activate i imamo sve biblioteke
+CTRL+SHIFT+P (VS code) select interpreter find udjemo u virtuelno_okruzenje>Scripts>python.exe
+Skidanje sa githuba???
+
