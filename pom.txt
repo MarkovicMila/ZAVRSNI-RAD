@@ -1,4 +1,13 @@
 CMD udjem u virtuelno_okruzenje>Scripts>activate i imamo sve biblioteke
 CTRL+SHIFT+P (VS code) select interpreter find udjemo u virtuelno_okruzenje>Scripts>python.exe
-Skidanje sa githuba???
+GitHub sidanje:
+>CMD cd .ssh/ili mkdir .ssh u C:\User\...
+>ssh-keygen -o -t rsa -C "milamarkovic97@gmail.com"
+>enter
+>enter
+>enter
+>enter
+>odemo u .ssh i otvorimo public file putem notepad-a i kopiramo
+>github SSH keys> novi >pastuemo kljuc i obrisemo poslednji enter
+>git clone korpiramo ssh kljuc sa githuba
 
