@@ -119,9 +119,5 @@ class Aranzmani:
 
 
 a=Aranzmani()
-# p.export_excel()
-# p.export_csv()
-# p.dodaj_posiljku('Petar Petrovic','Marko Markovic')
-# print(p.listbox())
-# print(a.listbox())
+
 # print(a.export_agencija('Rapsody Travel'))
